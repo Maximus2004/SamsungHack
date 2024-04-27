@@ -1,0 +1,273 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/backButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:clickable="true"
+        android:src="@drawable/profile_back_button"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/profileTextView"
+        android:layout_width="415px"
+        android:layout_height="100px"
+        android:background="@drawable/text_view_background"
+        android:fontFamily="@font/montserrat_alternates_medium"
+        android:gravity="center"
+        android:text="@string/profile_text_view"
+        android:textColor="@color/black"
+        android:textSize="50px"
+        app:layout_constraintBottom_toBottomOf="@+id/backButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/backButton" />
+
+    <ImageView
+        android:id="@+id/ellipseImageView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"
+        android:src="@drawable/ic_ellipse_avatar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/profileTextView" />
+
+    <ImageView
+        android:id="@+id/manImageView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_man_figure_avatar"
+        app:layout_constraintBottom_toBottomOf="@+id/ellipseImageView"
+        app:layout_constraintEnd_toEndOf="@+id/ellipseImageView"
+        app:layout_constraintHorizontal_bias="0.479"
+        app:layout_constraintStart_toStartOf="@+id/ellipseImageView"
+        app:layout_constraintTop_toTopOf="@+id/ellipseImageView"
+        app:layout_constraintVertical_bias="0.322" />
+
+
+    <LinearLayout
+        android:id="@+id/user_group"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_marginTop="15dp"
+        app:layout_constraintTop_toBottomOf="@+id/ellipseImageView">
+
+        <TextView
+            android:id="@+id/user_part1_TextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/montserrat_alternates_medium"
+            android:text="Пользователь"
+            android:textColor="@color/sign_up_colors_blue"
+            android:textSize="50px" />
+
+        <TextView
+            android:id="@+id/user_part2_TextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:fontFamily="@font/montserrat_alternates_medium"
+            android:text="- для личного"
+            android:textColor="@color/black"
+            android:textSize="50px"/>
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/user_part3_TextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/montserrat_alternates_medium"
+        android:text="пользования"
+        android:textColor="@color/black"
+        android:textSize="50px"
+        app:layout_constraintTop_toBottomOf="@id/user_group"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+<!--    -&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;-->
+
+    <LinearLayout
+        android:id="@+id/organization_group"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:gravity="center"
+        app:layout_constraintTop_toBottomOf="@+id/user_part3_TextView"
+        tools:layout_editor_absoluteX="0dp">
+
+        <TextView
+            android:id="@+id/org_part1_TextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/montserrat_alternates_medium"
+            android:text="Организация"
+            android:textColor="@color/sign_up_colors_blue"
+            android:textSize="50px" />
+
+        <TextView
+            android:id="@+id/org_part2_TextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:fontFamily="@font/montserrat_alternates_medium"
+            android:text="- для коммерческой"
+            android:textColor="@color/black"
+            android:textSize="50px" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/org_part3_TextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/montserrat_alternates_medium"
+        android:text="деятельности"
+        android:textColor="@color/black"
+        android:textSize="50px"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/organization_group" />
+ 
+<!--    -&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;-->
+    
+    <TextView
+        android:id="@+id/userSignUpButton"
+        android:layout_width="415px"
+        android:layout_height="100px"
+        android:background="@drawable/button_background"
+        android:clickable="true"
+        android:fontFamily="@font/montserrat_alternates_medium"
+        android:gravity="center"
+        android:text="Пользователь"
+        android:textColor="@color/white"
+        android:textSize="50px"
+        android:layout_marginTop="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/org_part3_TextView" />
+
+    <LinearLayout
+        android:id="@+id/userDescriptionGroup"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="vertical"
+        app:layout_constraintTop_toBottomOf="@id/userSignUpButton">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/montserrat_alternates_medium"
+            android:text="Будет доступна к приобретению"
+            android:textColor="@color/sign_up_colors_gray"
+            android:textSize="30px" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="подписка"
+                android:textSize="30px"
+                android:textColor="@color/sign_up_colors_gray"
+                android:fontFamily="@font/montserrat_alternates_medium"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="2dp"
+                android:clickable="true"
+                android:fontFamily="@font/montserrat_alternates_bold"
+                android:text="@string/premium_text_view"
+                android:textColor="@color/sign_up_colors_blue"
+                android:textSize="30px" />
+
+        </LinearLayout>
+    </LinearLayout>
+
+<!--    -&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;-->
+
+    <TextView
+        android:id="@+id/organizationSignUpButton"
+        android:layout_width="415px"
+        android:layout_height="100px"
+        android:background="@drawable/button_background"
+        android:clickable="true"
+        android:fontFamily="@font/montserrat_alternates_medium"
+        android:gravity="center"
+        android:text="Организация"
+        android:textColor="@color/white"
+        android:textSize="50px"
+        android:layout_marginTop="10dp"
+        app:layout_constraintTop_toBottomOf="@id/userDescriptionGroup"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:layout_editor_absoluteY="578dp" />
+
+    <LinearLayout
+        android:id="@+id/organizationDescriptionGroup"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="vertical"
+        app:layout_constraintTop_toBottomOf="@+id/organizationSignUpButton"
+        tools:layout_editor_absoluteX="25dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/montserrat_alternates_medium"
+            android:text="Будет доступна к приобретению"
+            android:textColor="@color/sign_up_colors_gray"
+            android:textSize="30px" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/montserrat_alternates_medium"
+                android:text="подписка"
+                android:textColor="@color/sign_up_colors_gray"
+                android:textSize="30px" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="2dp"
+                android:clickable="true"
+                android:fontFamily="@font/montserrat_alternates_bold"
+                android:text="@string/premium_text_view"
+                android:textColor="@color/sign_up_colors_blue"
+                android:textSize="30px" />
+
+        </LinearLayout>
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="Благодаря регистрации вы сможете\nприобрести подписки, которые открывают доступ\nк множеству новых функций приложения"
+        android:textSize="30px"
+        android:fontFamily="@font/montserrat_alternates_medium"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginBottom="12dp"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/backButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:clickable="true"
+        android:src="@drawable/profile_back_button"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/profileTextView"
+        android:layout_width="415px"
+        android:layout_height="100px"
+        android:background="@drawable/text_view_background"
+        android:fontFamily="@font/montserrat_alternates_medium"
+        android:gravity="center"
+        android:text="@string/profile_text_view"
+        android:textColor="@color/black"
+        android:textSize="50px"
+        app:layout_constraintBottom_toBottomOf="@+id/backButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/backButton" />
+
+    <ImageView
+        android:id="@+id/ellipseImageView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"
+        android:src="@drawable/ic_ellipse_avatar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/profileTextView" />
+
+    <ImageView
+        android:id="@+id/manImageView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_man_figure_avatar"
+        app:layout_constraintBottom_toBottomOf="@+id/ellipseImageView"
+        app:layout_constraintEnd_toEndOf="@+id/ellipseImageView"
+        app:layout_constraintHorizontal_bias="0.479"
+        app:layout_constraintStart_toStartOf="@+id/ellipseImageView"
+        app:layout_constraintTop_toTopOf="@+id/ellipseImageView"
+        app:layout_constraintVertical_bias="0.322" />
+
+    <TextView
+        android:id="@+id/orgNameTextView"
+        android:layout_width="415px"
+        android:layout_height="125px"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="360dp"
+        android:background="@drawable/text_view_background"
+        android:clickable="true"
+        android:fontFamily="@font/montserrat_alternates_medium"
+        android:gravity="center"
+        android:text="Наименование организации:"
+        android:textColor="@color/black"
+        android:textSize="50px"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/emailTextView"
+        android:layout_width="415px"
+        android:layout_height="100px"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/text_view_background"
+        android:clickable="true"
+        android:fontFamily="@font/montserrat_alternates_medium"
+        android:gravity="center"
+        android:text="Почта:"
+        android:textColor="@color/black"
+        android:textSize="50px"
+        app:layout_constraintStart_toStartOf="@+id/orgNameTextView"
+        app:layout_constraintTop_toBottomOf="@+id/orgNameTextView" />
+
+    <TextView
+        android:id="@+id/innTextView"
+        android:layout_width="415px"
+        android:layout_height="100px"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/text_view_background"
+        android:clickable="true"
+        android:fontFamily="@font/montserrat_alternates_medium"
+        android:gravity="center"
+        android:text="ИНН:"
+        android:textColor="@color/black"
+        android:textSize="50px"
+        app:layout_constraintStart_toStartOf="@+id/emailTextView"
+        app:layout_constraintTop_toBottomOf="@+id/emailTextView" />
+
+    <TextView
+        android:id="@+id/passwordTextView"
+        android:layout_width="415px"
+        android:layout_height="100px"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/text_view_background"
+        android:clickable="true"
+        android:fontFamily="@font/montserrat_alternates_medium"
+        android:gravity="center"
+        android:text="Пароль"
+        android:textColor="@color/black"
+        android:textSize="50px"
+        app:layout_constraintStart_toStartOf="@+id/innTextView"
+        app:layout_constraintTop_toBottomOf="@+id/innTextView" />
+
+    <EditText
+        android:id="@+id/orgNameEditText"
+        android:layout_width="540px"
+        android:layout_height="100px"
+        android:layout_marginEnd="16dp"
+        android:background="@drawable/edit_text_background"
+        android:fontFamily="@font/montserrat_alternates_medium"
+        android:gravity="center"
+        android:hint="Наименование"
+        android:textColor="@color/black"
+        android:textSize="45px"
+        app:layout_constraintBottom_toBottomOf="@+id/orgNameTextView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/orgNameTextView"
+        tools:text="EcoCrystal" />
+
+    <EditText
+        android:id="@+id/emailEditText"
+        android:layout_width="540px"
+        android:layout_height="100px"
+        android:background="@drawable/edit_text_background"
+        android:fontFamily="@font/montserrat_alternates_medium"
+        android:gravity="center"
+        android:hint="Почта"
+        tools:text="ecocrystal@gmail.com"
+        android:ellipsize="end"
+        android:textSize="45px"
+        app:layout_constraintBottom_toBottomOf="@+id/emailTextView"
+        app:layout_constraintEnd_toEndOf="@+id/orgNameEditText"
+        app:layout_constraintTop_toTopOf="@+id/emailTextView" />
+
+    <EditText
+        android:id="@+id/innEditText"
+        android:layout_width="540px"
+        android:layout_height="100px"
+        android:background="@drawable/edit_text_background"
+        android:fontFamily="@font/montserrat_alternates_medium"
+        android:gravity="center"
+        android:hint="ИНН"
+        android:maxLength="10"
+        android:textSize="45px"
+        app:layout_constraintBottom_toBottomOf="@+id/innTextView"
+        app:layout_constraintEnd_toEndOf="@+id/emailEditText"
+        app:layout_constraintTop_toTopOf="@+id/innTextView" />
+
+    <EditText
+        android:id="@+id/passwordEditText"
+        android:layout_width="540px"
+        android:layout_height="100px"
+        android:background="@drawable/edit_text_background"
+        android:fontFamily="@font/montserrat_alternates_medium"
+        android:gravity="center"
+        android:hint="Пароль"
+        android:maxLength="10"
+        android:textSize="45px"
+        app:layout_constraintBottom_toBottomOf="@+id/passwordTextView"
+        app:layout_constraintEnd_toEndOf="@+id/innEditText"
+        app:layout_constraintTop_toTopOf="@+id/passwordTextView" />
+
+    <TextView
+        android:id="@+id/signInButton"
+        android:layout_width="690px"
+        android:layout_height="100px"
+        android:background="@drawable/button_background"
+        android:fontFamily="@font/montserrat_alternates_medium"
+        android:gravity="center"
+        android:text="Зарегистрироваться"
+        android:textColor="@color/white"
+        android:textSize="50px"
+        app:layout_constraintBottom_toTopOf="@+id/bottomDescriptionTextView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/passwordTextView" />
+
+    <TextView
+        android:id="@+id/bottomDescriptionTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="12dp"
+        android:fontFamily="@font/montserrat_alternates_medium"
+        android:gravity="center"
+        android:text="Благодаря регистрации вы сможете\nприобрести подписки, которые открывают доступ\nк множеству новых функций приложения"
+        android:textSize="30px"
+        app:layout_constraintBottom_toBottomOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
