@@ -26,8 +26,10 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.viewinterop.AndroidView
 import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.rememberNavController
 import com.example.samsunghackaton.ui.HomeScreen
 import com.example.samsunghackaton.ui.theme.SamsungHackatonTheme
+import com.google.accompanist.navigation.animation.rememberAnimatedNavController
 import com.yandex.mapkit.MapKitFactory
 
 class MainActivity : ComponentActivity() {
@@ -37,17 +39,6 @@ class MainActivity : ComponentActivity() {
         MapKitFactory.initialize(this)
         setContent {
             SamsungHackatonTheme {
-
-                NavHost(
-                    navController = navController,
-                    startDestination = TherapyScreen.route,
-                    modifier = Modifier
-                        .fillMaxSize()
-                        .background(MaterialTheme.colorScheme.background)
-                        .padding(paddingValues = contentPadding),
-                    builder = {}
-                )
-
                 HomeScreen()
             }
         }

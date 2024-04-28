@@ -95,54 +95,27 @@ import kotlin.random.Random
 fun HomeScreen() {
     val coroutineScope = rememberCoroutineScope()
     val context = LocalContext.current
-    val scanLauncher = rememberLauncherForActivityResult(ScanContract()) { result ->
-        coroutineScope.launch {
-            if (result.contents != null) {
-                Toast.makeText(context, result.contents, Toast.LENGTH_SHORT).show()
-            } else {
-                Toast.makeText(context, "Не удалось отсканировать QR-код", Toast.LENGTH_SHORT).show()
-            }
-        }
-    }
     var score by remember { mutableIntStateOf(2) }
-    var address by remember { mutableStateOf("г. Москва, ул. Белая") }
+    var address by remember { mutableStateOf("г. Москва, ул. Варварка") }
     var producer by remember { mutableStateOf(ChartEntryModelProducer(getRandomEntries(0))) }
     val sheetState = rememberStandardBottomSheetState(initialValue = SheetValue.PartiallyExpanded)
     val scaffoldState = rememberBottomSheetScaffoldState(bottomSheetState = sheetState)
     val placemarkTapListener = MapObjectTapListener { _, point ->
-        when (point) {
-            Point(55.751280, 37.629720) -> {
-                producer = ChartEntryModelProducer(getRandomEntries(0))
-                address = "г. Москва, ул. Ильинка"
-                score = 3
+        producer = ChartEntryModelProducer(getRandomEntries(0))
+        address = getStreet()
+        score = getRandomScore()
+        coroutineScope.launch { sheetState.expand() }
+        true
+    }
+    val scanLauncher = rememberLauncherForActivityResult(ScanContract()) { result ->
+        coroutineScope.launch {
+            if (result.contents != null) {
+                Toast.makeText(context, "QR-код успешно отсканирован", Toast.LENGTH_SHORT).show()
                 coroutineScope.launch { sheetState.expand() }
-            }
-            Point(55.805584, 37.645483) -> {
-                producer = ChartEntryModelProducer(getRandomEntries(1))
-                address = "г. Москва, ул. Варварка"
-                score = 5
-                coroutineScope.launch { sheetState.expand() }
-            }
-            Point(55.755621, 37.629736) -> {
-                producer = ChartEntryModelProducer(getRandomEntries(2))
-                address = "г. Москва, пер. Рыбный"
-                score = 2
-                coroutineScope.launch { sheetState.expand() }
-            }
-            Point(55.753625, 37.625882) -> {
-                producer = ChartEntryModelProducer(getRandomEntries(3))
-                address = "г. Москва, ул. 3-я Мытищинская"
-                score = 1
-                coroutineScope.launch { sheetState.expand() }
-            }
-            else -> {
-                producer = ChartEntryModelProducer(getRandomEntries(4))
-                address = "г. Москва, ул. Ильинка"
-                score = 4
-                coroutineScope.launch { sheetState.expand() }
+            } else {
+                Toast.makeText(context, "Не удалось отсканировать QR-код", Toast.LENGTH_SHORT).show()
             }
         }
-        true
     }
 
     BottomSheetScaffold(
@@ -446,6 +419,27 @@ fun getRandomEntries(id: Int): List<FloatEntry> {
     }
 }
 
+fun getRandomScore(): Int {
+    var id = Random.nextInt() % 4 + 1
+    while (id < 1) {
+        id = Random.nextInt() % 4 + 1
+    }
+    return id
+}
+
+fun getStreet(): String {
+    var id = Random.nextInt() % 4 + 1
+    while (id < 1) {
+        id = Random.nextInt() % 4 + 1
+    }
+    return when(id % 4) {
+        0 -> "г. Москва, ул. Ильинка"
+        1 -> "г. Москва, ул. Арбат"
+        2 -> "г. Москва, пер. Рыбный"
+        3 -> "г. Москва, ул. Варварка"
+        else -> "г. Москва, ул. Ильинка"
+    }
+}
 @Composable
 fun ShowColumnChart(
     modifier: Modifier = Modifier,
