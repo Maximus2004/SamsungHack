@@ -1,9 +1,15 @@
 package com.example.samsunghackaton.ui
 
 import android.graphics.Typeface
+import android.util.Log
 import android.view.LayoutInflater
+import android.widget.ImageButton
+import android.widget.Toast
+import androidx.activity.compose.rememberLauncherForActivityResult
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -22,9 +28,13 @@ import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.icons.Icons
 import androidx.compose.material3.BottomSheetScaffold
 import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.SheetValue
 import androidx.compose.material3.Text
@@ -32,18 +42,25 @@ import androidx.compose.material3.rememberBottomSheetScaffoldState
 import androidx.compose.material3.rememberModalBottomSheetState
 import androidx.compose.material3.rememberStandardBottomSheetState
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableIntStateOf
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.viewinterop.AndroidView
 import com.example.samsunghackaton.R
+import com.journeyapps.barcodescanner.ScanContract
+import com.journeyapps.barcodescanner.ScanOptions
 import com.patrykandpatrick.vico.compose.axis.horizontal.rememberBottomAxis
 import com.patrykandpatrick.vico.compose.axis.vertical.rememberStartAxis
 import com.patrykandpatrick.vico.compose.chart.Chart
@@ -64,6 +81,11 @@ import com.patrykandpatrick.vico.core.entry.FloatEntry
 import com.patrykandpatrick.vico.core.entry.entryModelOf
 import com.patrykandpatrick.vico.core.marker.Marker
 import com.patrykandpatrick.vico.core.marker.MarkerVisibilityChangeListener
+import com.yandex.mapkit.geometry.Point
+import com.yandex.mapkit.map.CameraPosition
+import com.yandex.mapkit.map.MapObjectTapListener
+import com.yandex.mapkit.mapview.MapView
+import com.yandex.runtime.image.ImageProvider
 import kotlinx.coroutines.launch
 import java.time.LocalDate
 import kotlin.random.Random
@@ -71,13 +93,58 @@ import kotlin.random.Random
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun HomeScreen() {
-    val assets = LocalContext.current
-    val customTypeface = Typeface.createFromAsset(assets.assets, "inter_regular.ttf")
+    val coroutineScope = rememberCoroutineScope()
+    val context = LocalContext.current
+    val scanLauncher = rememberLauncherForActivityResult(ScanContract()) { result ->
+        coroutineScope.launch {
+            if (result.contents != null) {
+                Toast.makeText(context, result.contents, Toast.LENGTH_SHORT).show()
+            } else {
+                Toast.makeText(context, "Не удалось отсканировать QR-код", Toast.LENGTH_SHORT).show()
+            }
+        }
+    }
+    var score by remember { mutableIntStateOf(2) }
+    var address by remember { mutableStateOf("г. Москва, ул. Белая") }
+    var producer by remember { mutableStateOf(ChartEntryModelProducer(getRandomEntries(0))) }
     val sheetState = rememberStandardBottomSheetState(initialValue = SheetValue.PartiallyExpanded)
-    val scaffoldState = rememberBottomSheetScaffoldState(
-        bottomSheetState = sheetState
-    )
-    val scope = rememberCoroutineScope()
+    val scaffoldState = rememberBottomSheetScaffoldState(bottomSheetState = sheetState)
+    val placemarkTapListener = MapObjectTapListener { _, point ->
+        when (point) {
+            Point(55.751280, 37.629720) -> {
+                producer = ChartEntryModelProducer(getRandomEntries(0))
+                address = "г. Москва, ул. Ильинка"
+                score = 3
+                coroutineScope.launch { sheetState.expand() }
+            }
+            Point(55.805584, 37.645483) -> {
+                producer = ChartEntryModelProducer(getRandomEntries(1))
+                address = "г. Москва, ул. Варварка"
+                score = 5
+                coroutineScope.launch { sheetState.expand() }
+            }
+            Point(55.755621, 37.629736) -> {
+                producer = ChartEntryModelProducer(getRandomEntries(2))
+                address = "г. Москва, пер. Рыбный"
+                score = 2
+                coroutineScope.launch { sheetState.expand() }
+            }
+            Point(55.753625, 37.625882) -> {
+                producer = ChartEntryModelProducer(getRandomEntries(3))
+                address = "г. Москва, ул. 3-я Мытищинская"
+                score = 1
+                coroutineScope.launch { sheetState.expand() }
+            }
+            else -> {
+                producer = ChartEntryModelProducer(getRandomEntries(4))
+                address = "г. Москва, ул. Ильинка"
+                score = 4
+                coroutineScope.launch { sheetState.expand() }
+            }
+        }
+        true
+    }
+
     BottomSheetScaffold(
         scaffoldState = scaffoldState,
         sheetContent = {
@@ -97,7 +164,7 @@ fun HomeScreen() {
                         contentAlignment = Alignment.Center
                     ) {
                         Text(
-                            text = "г. Москва, ул. Белая",
+                            text = address,
                             modifier = Modifier.padding(vertical = 11.dp, horizontal = 30.dp),
                             style = MaterialTheme.typography.titleMedium
                         )
@@ -145,7 +212,11 @@ fun HomeScreen() {
                                 .clip(RoundedCornerShape(12.dp))
                                 .background(Color(0xFFF4F4F4))
                                 .weight(0.56f)
-                                .border(width = 2.dp, shape = RoundedCornerShape(12.dp), color = Color(0xFFB4B3B3)),
+                                .border(
+                                    width = 2.dp,
+                                    shape = RoundedCornerShape(12.dp),
+                                    color = Color(0xFFB4B3B3)
+                                ),
                             contentAlignment = Alignment.CenterStart
                         ) {
                             Column(
@@ -162,7 +233,7 @@ fun HomeScreen() {
                                         text = "PM 2.5:",
                                         style = MaterialTheme.typography.bodyMedium
                                     )
-                                    Text(text = "124.2", style = MaterialTheme.typography.bodySmall)
+                                    Text(text = "9.2 µg", style = MaterialTheme.typography.bodySmall)
                                 }
                                 Row(
                                     modifier = Modifier
@@ -174,7 +245,7 @@ fun HomeScreen() {
                                         text = "PM 10:",
                                         style = MaterialTheme.typography.bodyMedium
                                     )
-                                    Text(text = "12%", style = MaterialTheme.typography.bodySmall)
+                                    Text(text = "5.3 µg", style = MaterialTheme.typography.bodySmall)
                                 }
                                 Row(
                                     modifier = Modifier
@@ -186,10 +257,10 @@ fun HomeScreen() {
                                         text = "Давление:",
                                         style = MaterialTheme.typography.bodyMedium
                                     )
-                                    Text(text = "12.42", style = MaterialTheme.typography.bodySmall)
+                                    Text(text = "155 Па", style = MaterialTheme.typography.bodySmall)
                                 }
                                 Text(
-                                    "27.04.2024",
+                                    "28.04.2024",
                                     style = MaterialTheme.typography.titleSmall,
                                     modifier = Modifier
                                         .padding(top = 8.dp)
@@ -198,7 +269,7 @@ fun HomeScreen() {
                             }
                         }
                         Spacer(Modifier.width(10.dp))
-                        BatteryWidget(modifier = Modifier.weight(0.44f), score = 2)
+                        BatteryWidget(modifier = Modifier.weight(0.44f), score = score)
                     }
                     Box(
                         modifier = Modifier
@@ -226,9 +297,7 @@ fun HomeScreen() {
                         modifier = Modifier.padding(start = 10.dp, bottom = 13.dp)
                     )
 
-                    val producer = ChartEntryModelProducer(getRandomEntries())
                     ShowColumnChart(
-                        typeface = customTypeface,
                         modelProducerColumn = producer,
                         onDataChanged = { _, _ -> },
                         modifier = Modifier.padding(horizontal = 10.dp)
@@ -239,35 +308,152 @@ fun HomeScreen() {
         sheetPeekHeight = 120.dp,
         sheetContainerColor = Color.White
     ) {
-        AndroidView(
-            factory = { context ->
-                LayoutInflater.from(context).inflate(R.layout.map_activity, null, false)
-            },
-            update = { view ->
+        Box() {
+            AndroidView(
+                factory = { context ->
+                    val view = LayoutInflater.from(context).inflate(R.layout.map_activity, null, false)
 
+                    val mapView = view.findViewById<MapView>(R.id.mapview)
+
+                    val map = mapView.mapWindow.map
+                    map.move(CameraPosition(Point(55.751280, 37.629720), 17.0f, 150.0f, 30.0f))
+
+                    val imageProvider = ImageProvider.fromResource(context, R.drawable.point)
+                    val arrayPoints = listOf(
+                        Point(55.751280, 37.629720),
+                        Point(55.805584, 37.645483),
+                        Point(55.755621, 37.629736),
+                        Point(55.753625, 37.625882),
+                        Point(55.741206, 37.614267)
+                    )
+                    val placemarkObject1 = map.mapObjects.addPlacemark().apply {
+                        geometry = arrayPoints[0]
+                        setIcon(imageProvider)
+                    }
+                    placemarkObject1.addTapListener(placemarkTapListener)
+
+                    val placemarkObject2 = map.mapObjects.addPlacemark().apply {
+                        geometry = arrayPoints[1]
+                        setIcon(imageProvider)
+                    }
+                    placemarkObject2.addTapListener(placemarkTapListener)
+
+                    val placemarkObject3 = map.mapObjects.addPlacemark().apply {
+                        geometry = arrayPoints[2]
+                        setIcon(imageProvider)
+                    }
+                    placemarkObject3.addTapListener(placemarkTapListener)
+
+                    val placemarkObject4 = map.mapObjects.addPlacemark().apply {
+                        geometry = arrayPoints[3]
+                        setIcon(imageProvider)
+                    }
+                    placemarkObject4.addTapListener(placemarkTapListener)
+
+                    val placemarkObject5 = map.mapObjects.addPlacemark().apply {
+                        geometry = arrayPoints[4]
+                        setIcon(imageProvider)
+                    }
+                    placemarkObject5.addTapListener(placemarkTapListener)
+                    view
+                },
+                update = { view ->
+
+                }
+            )
+            Box(
+                modifier = Modifier
+                    .padding(top = 9.dp)
+                    .align(Alignment.TopEnd)
+                    .width(48.dp)
+                    .height(54.dp)
+                    .clip(
+                        RoundedCornerShape(
+                            topStart = 12.dp,
+                            bottomStart = 12.dp,
+                            bottomEnd = 0.dp,
+                            topEnd = 0.dp
+                        )
+                    )
+                    .background(color = Color(0xFF6BA6FF))
+                    .clickable { scanLauncher.launch(ScanOptions().setPrompt("")) },
+            ) {
+                Icon(
+                    painter = painterResource(id = R.drawable.qr_code),
+                    tint = Color.White,
+                    modifier = Modifier.align(Alignment.Center),
+                    contentDescription = null
+                )
             }
-        )
+            Box(
+                modifier = Modifier
+                    .padding(top = 9.dp)
+                    .align(Alignment.TopStart)
+                    .width(48.dp)
+                    .height(54.dp)
+                    .clip(
+                        RoundedCornerShape(
+                            bottomEnd = 12.dp,
+                            topEnd = 12.dp,
+                            topStart = 0.dp,
+                            bottomStart = 0.dp
+                        )
+                    )
+                    .background(color = Color(0xFF6BA6FF))
+                    .clickable { }
+            ) {
+                Icon(
+                    painter = painterResource(id = R.drawable.profile),
+                    tint = Color.White,
+                    modifier = Modifier.align(Alignment.Center),
+                    contentDescription = null
+                )
+            }
+            Box(
+                modifier = Modifier
+                    .padding(bottom = 130.dp)
+                    .align(Alignment.BottomEnd)
+                    .width(48.dp)
+                    .height(54.dp)
+                    .clip(
+                        RoundedCornerShape(
+                            topStart = 12.dp,
+                            bottomStart = 12.dp,
+                            bottomEnd = 0.dp,
+                            topEnd = 0.dp
+                        )
+                    )
+                    .background(color = Color(0xFF6BA6FF))
+                    .clickable { }
+            ) {
+                Icon(
+                    painter = painterResource(id = R.drawable.near_me),
+                    tint = Color.White,
+                    modifier = Modifier.align(Alignment.Center),
+                    contentDescription = null
+                )
+            }
+        }
     }
 }
 
-fun getRandomEntries() = List(size = 7) {
-    it%4+1
-}.mapIndexed { x, y ->
-    FloatEntry(
-        x = x.toFloat(),
-        y = y.toFloat(),
-    )
+fun getRandomEntries(id: Int): List<FloatEntry> {
+    return when(Random.nextInt() % 3) {
+        0 -> listOf(FloatEntry(1f, 2f), FloatEntry(2f, 1f), FloatEntry(3f, 3f), FloatEntry(4f, 4f), FloatEntry(5f, 5f), FloatEntry(6f, 5f), FloatEntry(7f, 5f))
+        1 -> listOf(FloatEntry(1f, 4f), FloatEntry(2f, 1f), FloatEntry(3f, 5f), FloatEntry(4f, 3f), FloatEntry(5f, 3f), FloatEntry(6f, 1f), FloatEntry(7f, 2f))
+        2 -> listOf(FloatEntry(1f, 3f), FloatEntry(2f, 2f), FloatEntry(3f, 2f), FloatEntry(4f, 2f), FloatEntry(5f, 2f), FloatEntry(6f, 2f), FloatEntry(7f, 2f))
+        else -> listOf(FloatEntry(1f, 5f), FloatEntry(2f, 2f), FloatEntry(3f, 3f), FloatEntry(4f, 1f), FloatEntry(5f, 5f), FloatEntry(6f, 5f), FloatEntry(7f, 4f))
+    }
 }
 
 @Composable
 fun ShowColumnChart(
     modifier: Modifier = Modifier,
-    typeface: Typeface,
     modelProducerColumn: ChartEntryModelProducer,
     onDataChanged: (Int, Int) -> Unit
 ) {
     val defaultColumns = currentChartStyle.columnChart.columns
-    val thresholdLineNullLevel = rememberNullLevel(typeface)
+    val thresholdLineNullLevel = rememberNullLevel()
     Chart(
         modifier = modifier.padding(bottom = 30.dp),
         chart = columnChart(
@@ -313,8 +499,7 @@ fun ShowColumnChart(
         startAxis = rememberStartAxis(
             label = textComponent(
                 color = Color.Transparent,
-                textSize = 12.sp,
-                typeface = typeface
+                textSize = 12.sp
             ),
             valueFormatter = { value, _ -> value.toInt().toString() },
             tickLength = 0.dp,
@@ -359,12 +544,11 @@ fun ShowColumnChart(
 }
 
 @Composable
-private fun rememberNullLevel(customTypeface: Typeface): ThresholdLine {
+private fun rememberNullLevel(): ThresholdLine {
     val line = shapeComponent(color = Color.Transparent, strokeColor = Color.Transparent)
     val label = textComponent(
         color = Color.Transparent,
-        textSize = 12.sp,
-        typeface = customTypeface
+        textSize = 12.sp
     )
     return remember(line, label) {
         ThresholdLine(

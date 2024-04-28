@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "632798442017",
+    "firebase_url": "https://nodemcu-6fa4a-default-rtdb.firebaseio.com",
+    "project_id": "nodemcu-6fa4a",
+    "storage_bucket": "nodemcu-6fa4a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:632798442017:android:95cff8fa44ec75ab8f6960",
+        "android_client_info": {
+          "package_name": "com.example.samsunghackaton"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBCOXPaX5e02gGBrVNyJeE-b6nDK2CwcPc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

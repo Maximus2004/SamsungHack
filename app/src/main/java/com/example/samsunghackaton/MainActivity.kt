@@ -5,9 +5,11 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.BottomSheetScaffold
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
@@ -23,19 +25,29 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.viewinterop.AndroidView
+import androidx.navigation.compose.NavHost
 import com.example.samsunghackaton.ui.HomeScreen
 import com.example.samsunghackaton.ui.theme.SamsungHackatonTheme
 import com.yandex.mapkit.MapKitFactory
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
-
+        super.onCreate(savedInstanceState)
         MapKitFactory.setApiKey("47c26929-21df-42f4-8008-5c28e2b95b8e")
         MapKitFactory.initialize(this)
-
-        super.onCreate(savedInstanceState)
         setContent {
             SamsungHackatonTheme {
+
+                NavHost(
+                    navController = navController,
+                    startDestination = TherapyScreen.route,
+                    modifier = Modifier
+                        .fillMaxSize()
+                        .background(MaterialTheme.colorScheme.background)
+                        .padding(paddingValues = contentPadding),
+                    builder = {}
+                )
+
                 HomeScreen()
             }
         }
