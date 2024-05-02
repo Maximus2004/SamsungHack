@@ -12,10 +12,30 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.SamsungHackaton"
         tools:targetApi="31">
-        <!--<activity
-            android:name=".TestActivity"
+        <activity
+            android:name=".OrganizationProfileActivity"
             android:exported="false"
-            android:theme="@style/Theme.SamsungHackaton"/>-->
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
+        <activity
+            android:name=".SignUpAsOrganizationActivity"
+            android:exported="false"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
+        <activity
+            android:name=".SignInActivity"
+            android:exported="false"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
+        <activity
+            android:name=".UserProfileActivity"
+            android:exported="false"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
+        <activity
+            android:name=".SignUpAsUserActivity"
+            android:exported="false"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
+        <activity
+            android:name=".AfterSignUpActivity"
+            android:exported="false"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
         <activity
             android:name=".TestActivity"
             android:exported="true"

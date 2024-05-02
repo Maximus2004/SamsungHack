@@ -3,9 +3,92 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".TestActivity">
+    android:layout_height="match_parent">
 
+    <TextView
+        android:id="@+id/profileTextView"
+        android:layout_width="415px"
+        android:layout_height="100px"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/text_view_background"
+        android:fontFamily="@font/montserrat_alternates_medium"
+        android:gravity="center"
+        android:text="@string/profile_text_view"
+        android:textColor="@color/black"
+        android:textSize="50px"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.501"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
+    <ImageView
+        android:id="@+id/ellipseImageView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:src="@drawable/ic_ellipse_avatar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/profileTextView" />
+
+    <ImageView
+        android:id="@+id/manImageView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_man_figure_avatar"
+        app:layout_constraintBottom_toBottomOf="@+id/ellipseImageView"
+        app:layout_constraintEnd_toEndOf="@+id/ellipseImageView"
+        app:layout_constraintHorizontal_bias="0.479"
+        app:layout_constraintStart_toStartOf="@+id/ellipseImageView"
+        app:layout_constraintTop_toTopOf="@+id/ellipseImageView"
+        app:layout_constraintVertical_bias="0.320" />
+
+    <TextView
+        android:id="@+id/signUpButton"
+        android:layout_width="415px"
+        android:layout_height="100px"
+        android:background="@drawable/button_background"
+        android:fontFamily="@font/montserrat_alternates_medium"
+        android:gravity="center"
+        android:text="Регистрация"
+        android:textColor="@color/white"
+        android:textSize="50px"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ellipseImageView" />
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:gravity="center"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/montserrat_alternates_medium"
+            android:gravity="center"
+            android:text="Уже есть аккаунт?"
+            android:textColor="@color/sign_up_colors_gray"
+            android:textSize="40px" />
+
+        <TextView
+            android:id="@+id/enterButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="2dp"
+            android:fontFamily="@font/montserrat_alternates_medium"
+            android:gravity="center"
+            android:text="Войти"
+            android:textColor="@color/sign_up_colors_blue"
+            android:textSize="40px"
+            android:textStyle="bold" />
+
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -5,38 +5,30 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <ImageView
-        android:id="@+id/backButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:clickable="true"
-        android:src="@drawable/profile_back_button"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
     <TextView
         android:id="@+id/profileTextView"
         android:layout_width="415px"
         android:layout_height="100px"
+        android:layout_marginTop="16dp"
         android:background="@drawable/text_view_background"
         android:fontFamily="@font/montserrat_alternates_medium"
         android:gravity="center"
         android:text="@string/profile_text_view"
         android:textColor="@color/black"
         android:textSize="50px"
-        app:layout_constraintBottom_toBottomOf="@+id/backButton"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.501"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/backButton" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
         android:id="@+id/ellipseImageView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="25dp"
+        android:layout_marginTop="16dp"
         android:src="@drawable/ic_ellipse_avatar"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/profileTextView" />
 
@@ -53,7 +45,7 @@
         app:layout_constraintVertical_bias="0.320" />
 
     <TextView
-        android:id="@+id/sign_up"
+        android:id="@+id/signUpButton"
         android:layout_width="415px"
         android:layout_height="100px"
         android:background="@drawable/button_background"
@@ -71,10 +63,10 @@
         android:id="@+id/linearLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
         android:gravity="center"
         android:orientation="horizontal"
-        app:layout_constraintBottom_toBottomOf="parent"
-        android:layout_marginBottom="10dp">
+        app:layout_constraintBottom_toBottomOf="parent">
 
         <TextView
             android:layout_width="wrap_content"
@@ -86,6 +78,7 @@
             android:textSize="40px" />
 
         <TextView
+            android:id="@+id/enterButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="2dp"
