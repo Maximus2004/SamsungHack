@@ -1,0 +1,460 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintTop_toBottomOf="@+id/profileTextView"
+        android:layout_marginTop="75dp">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/ellipseImageView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_ellipse_avatar"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:id="@+id/manImageView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_man_figure_avatar"
+                app:layout_constraintBottom_toBottomOf="@+id/ellipseImageView"
+                app:layout_constraintEnd_toEndOf="@+id/ellipseImageView"
+                app:layout_constraintHorizontal_bias="0.479"
+                app:layout_constraintStart_toStartOf="@+id/ellipseImageView"
+                app:layout_constraintTop_toTopOf="@+id/ellipseImageView"
+                app:layout_constraintVertical_bias="0.322" />
+
+            <TextView
+                android:id="@+id/orgNameTextView"
+                android:layout_width="415px"
+                android:layout_height="125px"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="290dp"
+                android:background="@drawable/text_view_background"
+                android:clickable="true"
+                android:fontFamily="@font/montserrat_alternates_medium"
+                android:gravity="center"
+                android:text="Компания:"
+                android:textColor="@color/black"
+                android:textSize="50px"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/emailTextView"
+                android:layout_width="415px"
+                android:layout_height="100px"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/text_view_background"
+                android:clickable="true"
+                android:fontFamily="@font/montserrat_alternates_medium"
+                android:gravity="center"
+                android:text="Почта:"
+                android:textColor="@color/black"
+                android:textSize="50px"
+                app:layout_constraintStart_toStartOf="@+id/orgNameTextView"
+                app:layout_constraintTop_toBottomOf="@+id/orgNameTextView" />
+
+            <TextView
+                android:id="@+id/innTextView"
+                android:layout_width="415px"
+                android:layout_height="100px"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/text_view_background"
+                android:clickable="true"
+                android:fontFamily="@font/montserrat_alternates_medium"
+                android:gravity="center"
+                android:text="ИНН:"
+                android:textColor="@color/black"
+                android:textSize="50px"
+                app:layout_constraintStart_toStartOf="@+id/emailTextView"
+                app:layout_constraintTop_toBottomOf="@+id/emailTextView" />
+
+            <TextView
+                android:id="@+id/passwordTextView"
+                android:layout_width="415px"
+                android:layout_height="100px"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/text_view_background"
+                android:clickable="true"
+                android:fontFamily="@font/montserrat_alternates_medium"
+                android:gravity="center"
+                android:text="Пароль"
+                android:textColor="@color/black"
+                android:textSize="50px"
+                app:layout_constraintStart_toStartOf="@+id/innTextView"
+                app:layout_constraintTop_toBottomOf="@+id/innTextView" />
+
+            <TextView
+                android:id="@+id/currentOrgNameTextView"
+                android:layout_width="540px"
+                android:layout_height="100px"
+                android:layout_marginEnd="16dp"
+                android:background="@drawable/edit_text_background"
+                android:fontFamily="@font/montserrat_alternates_medium"
+                android:gravity="center"
+                android:hint="Наименование"
+                android:textColor="@color/black"
+                android:textSize="45px"
+                app:layout_constraintBottom_toBottomOf="@+id/orgNameTextView"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/orgNameTextView"
+                tools:text="EcoCrystal" />
+
+            <TextView
+                android:id="@+id/currentEmailTextView"
+                android:layout_width="540px"
+                android:layout_height="100px"
+                android:background="@drawable/edit_text_background"
+                android:fontFamily="@font/montserrat_alternates_medium"
+                android:gravity="center"
+                android:hint="Почта"
+                tools:text="ecocrystal@mail.ru"
+                android:ellipsize="end"
+                android:textColor="@color/black"
+                android:textSize="45px"
+                app:layout_constraintBottom_toBottomOf="@+id/emailTextView"
+                app:layout_constraintEnd_toEndOf="@+id/currentOrgNameTextView"
+                app:layout_constraintTop_toTopOf="@+id/emailTextView" />
+
+            <TextView
+                android:id="@+id/currentInnTextView"
+                android:layout_width="540px"
+                android:layout_height="100px"
+                android:background="@drawable/edit_text_background"
+                android:fontFamily="@font/montserrat_alternates_medium"
+                android:gravity="center"
+                android:hint="ИНН"
+                android:maxLength="10"
+                tools:text="1234567890"
+                android:textSize="45px"
+                android:textColor="@color/black"
+                app:layout_constraintBottom_toBottomOf="@+id/innTextView"
+                app:layout_constraintEnd_toEndOf="@+id/currentEmailTextView"
+                app:layout_constraintTop_toTopOf="@+id/innTextView" />
+
+            <TextView
+                android:id="@+id/currentPasswordTextView"
+                android:layout_width="540px"
+                android:layout_height="100px"
+                android:background="@drawable/edit_text_background"
+                android:fontFamily="@font/montserrat_alternates_medium"
+                android:gravity="center"
+                android:hint="Пароль"
+                android:text="1234qwer"
+                android:maxLength="10"
+                android:textSize="45px"
+                android:textColor="@color/black"
+                app:layout_constraintBottom_toBottomOf="@+id/passwordTextView"
+                app:layout_constraintEnd_toEndOf="@+id/currentInnTextView"
+                app:layout_constraintTop_toTopOf="@+id/passwordTextView"
+                android:inputType="textPassword"/>
+
+            <TextView
+                android:id="@+id/businessUnenabledTextView"
+                android:layout_width="415px"
+                android:layout_height="100px"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/edit_text_background"
+                android:backgroundTint="@color/profile_colors_gray"
+                android:fontFamily="@font/montserrat_alternates_semi_bold"
+                android:gravity="center"
+                android:text="Бизнес"
+                android:textColor="@color/black"
+                android:textSize="50px"
+                app:layout_constraintTop_toBottomOf="@+id/passwordTextView"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:visibility="visible"/>
+
+            <TextView
+                android:id="@+id/descriptionDefaultTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/premium_unenabled_background"
+                android:backgroundTint="@color/sign_up_colors_light_gray"
+                android:textSize="45px"
+                android:textColor="@color/black"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginTop="16dp"
+                android:gravity="center"
+                android:text="У вас отсутствует подписка!\n\nВозможности подписки:\n\n\n\n"
+                android:fontFamily="@font/montserrat_alternates_medium"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/businessUnenabledTextView"
+                android:visibility="visible"/>
+
+            <TextView
+                android:id="@+id/uploadDataDefaultTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="60dp"
+                android:fontFamily="@font/montserrat_alternates_medium"
+                android:gravity="center"
+                android:textSize="45px"
+                android:text="Выгрузить данные в\nудобный для анализа файл"
+                android:textColor="@color/sign_up_colors_blue"
+                app:layout_constraintStart_toStartOf="@+id/descriptionDefaultTextView"
+                app:layout_constraintEnd_toEndOf="@id/descriptionDefaultTextView"
+                app:layout_constraintTop_toTopOf="@id/descriptionDefaultTextView"
+                android:visibility="visible"/>
+
+            <TextView
+                android:id="@+id/widgetDefaultTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/montserrat_alternates_medium"
+                android:gravity="center"
+                android:textSize="45px"
+                android:textColor="@color/sign_up_colors_blue"
+                android:text="Добавить виджет на рабочий стол"
+                app:layout_constraintStart_toStartOf="@+id/descriptionDefaultTextView"
+                app:layout_constraintEnd_toEndOf="@id/descriptionDefaultTextView"
+                app:layout_constraintTop_toBottomOf="@+id/uploadDataDefaultTextView"
+                android:visibility="visible"/>
+
+            <TextView
+                android:id="@+id/subscribeButton"
+                android:layout_width="690px"
+                android:layout_height="150px"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="16dp"
+                android:background="@drawable/button_background"
+                android:fontFamily="@font/montserrat_alternates_semi_bold"
+                android:gravity="center"
+                android:text="Оформить подписку"
+                android:textColor="@color/white"
+                android:textSize="50px"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/descriptionDefaultTextView"
+                android:visibility="visible"/>
+
+            <!--Для БИЗНЕСА-->
+
+            <ImageView
+                android:id="@+id/crownImageView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_crown_avatar"
+                android:layout_marginTop="6dp"
+                app:layout_constraintTop_toTopOf="@id/ellipseImageView"
+                app:layout_constraintEnd_toEndOf="@+id/manImageView"
+                app:layout_constraintStart_toStartOf="@+id/manImageView"
+                android:visibility="gone"/>
+
+            <TextView
+                android:id="@+id/businessEnabledTextView"
+                android:layout_width="415px"
+                android:layout_height="100px"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/edit_text_background"
+                android:backgroundTint="@color/sign_up_colors_blue"
+                android:fontFamily="@font/montserrat_alternates_semi_bold"
+                android:gravity="center"
+                android:text="Бизнес"
+                android:textColor="@color/white"
+                android:textSize="50px"
+                app:layout_constraintTop_toBottomOf="@+id/passwordTextView"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:visibility="gone"/>
+
+            <TextView
+                android:id="@+id/descriptionBusinessTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/premium_unenabled_background"
+                android:backgroundTint="@color/sign_up_colors_light_gray"
+                android:textSize="45px"
+                android:textColor="@color/black"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginTop="16dp"
+                android:gravity="center"
+                android:text="У вас оформлена подписка!\nВозможности подписки:\n\n\n\n\n\n"
+                android:fontFamily="@font/montserrat_alternates_medium"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/businessEnabledTextView"
+                android:visibility="gone"/>
+
+            <TextView
+                android:id="@+id/uploadDataBusinessTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="40dp"
+                android:fontFamily="@font/montserrat_alternates_medium"
+                android:gravity="center"
+                android:textSize="45px"
+                android:text="Выгрузить данные в\nудобный для анализа файл;"
+                android:textColor="@color/sign_up_colors_blue"
+                app:layout_constraintStart_toStartOf="@+id/descriptionBusinessTextView"
+                app:layout_constraintEnd_toEndOf="@id/descriptionBusinessTextView"
+                app:layout_constraintTop_toTopOf="@id/descriptionBusinessTextView"
+                android:visibility="gone"/>
+
+            <TextView
+                android:id="@+id/widgetBusinessTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/montserrat_alternates_medium"
+                android:gravity="center"
+                android:textSize="45px"
+                android:textColor="@color/sign_up_colors_blue"
+                android:text="Добавить виджет на рабочий стол;"
+                app:layout_constraintStart_toStartOf="@+id/descriptionBusinessTextView"
+                app:layout_constraintEnd_toEndOf="@id/descriptionBusinessTextView"
+                app:layout_constraintTop_toBottomOf="@+id/uploadDataBusinessTextView"
+                android:visibility="gone"/>
+
+            <TextView
+                android:id="@+id/predictionBusinessTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/montserrat_alternates_medium"
+                android:gravity="center"
+                android:textSize="45px"
+                android:textColor="@color/sign_up_colors_blue"
+                android:text="Прогнозирование"
+                app:layout_constraintStart_toStartOf="@+id/descriptionBusinessTextView"
+                app:layout_constraintEnd_toEndOf="@id/descriptionBusinessTextView"
+                app:layout_constraintTop_toBottomOf="@id/widgetBusinessTextView"
+                android:visibility="gone"/>
+
+            <TextView
+                android:id="@+id/subscriptionPeriodTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="30px"
+                android:layout_marginTop="20dp"
+                android:textColor="@color/sign_up_colors_gray"
+                android:fontFamily="@font/montserrat_alternates_medium"
+                android:text="@string/subscription_period_text_view"
+                tools:text="Подписка действует до 30.04.2024"
+                app:layout_constraintTop_toBottomOf="@id/predictionBusinessTextView"
+                app:layout_constraintStart_toStartOf="@id/descriptionBusinessTextView"
+                app:layout_constraintEnd_toEndOf="@id/descriptionBusinessTextView"
+                android:visibility="gone"/>
+
+            <TextView
+                android:id="@+id/subscriptionCancelButton"
+                android:layout_width="415px"
+                android:layout_height="100px"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/button_background"
+                android:fontFamily="@font/montserrat_alternates_semi_bold"
+                android:gravity="center"
+                android:text="Отменить"
+                android:textColor="@color/white"
+                android:textSize="50px"
+                app:layout_constraintBottom_toTopOf="@+id/textView"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.12"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/descriptionBusinessTextView"
+                android:visibility="gone"/>
+
+            <TextView
+                android:id="@+id/subscriptionExtendButton"
+                android:layout_width="415px"
+                android:layout_height="100px"
+                android:background="@drawable/button_background"
+                android:fontFamily="@font/montserrat_alternates_semi_bold"
+                android:gravity="center"
+                android:text="Продлить"
+                android:textColor="@color/white"
+                android:textSize="50px"
+                app:layout_constraintBottom_toTopOf="@+id/textView"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.88"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/subscriptionCancelButton"
+                app:layout_constraintVertical_bias="0.0"
+                android:visibility="gone"/>
+
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/montserrat_alternates_medium"
+                android:gravity="center"
+                android:text="Нажимая на кнопку скачать,\nвы загружаете все данные за выбранный\nвременной диапазон"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginTop="40dp"
+                app:layout_constraintTop_toBottomOf="@id/subscriptionCancelButton"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:layout_marginBottom="4dp"
+                android:visibility="gone"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </ScrollView>
+
+    <ImageView
+        android:id="@+id/backButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:clickable="true"
+        android:src="@drawable/profile_back_button"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/downloadButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/download_button"
+        app:layout_constraintTop_toTopOf="@id/backButton"
+        app:layout_constraintBottom_toBottomOf="@id/backButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:visibility="gone"/>
+
+    <ImageView
+        android:id="@+id/iconDownloadButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_download"
+        app:layout_constraintBottom_toBottomOf="@id/downloadButton"
+        app:layout_constraintEnd_toEndOf="@id/downloadButton"
+        app:layout_constraintHorizontal_bias="0.7"
+        app:layout_constraintStart_toStartOf="@id/downloadButton"
+        app:layout_constraintTop_toTopOf="@id/downloadButton"
+        app:layout_constraintVertical_bias="0.5"
+        android:visibility="gone"/>
+
+    <TextView
+        android:id="@+id/profileTextView"
+        android:layout_width="415px"
+        android:layout_height="100px"
+        android:background="@drawable/text_view_background"
+        android:fontFamily="@font/montserrat_alternates_medium"
+        android:gravity="center"
+        android:text="@string/profile_text_view"
+        android:textColor="@color/black"
+        android:textSize="50px"
+        app:layout_constraintBottom_toBottomOf="@+id/backButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/backButton" />
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

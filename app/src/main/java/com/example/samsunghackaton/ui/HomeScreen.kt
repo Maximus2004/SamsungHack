@@ -92,7 +92,7 @@ import kotlin.random.Random
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun HomeScreen() {
+fun HomeScreen(navigate: (String) -> Unit) {
     val coroutineScope = rememberCoroutineScope()
     val context = LocalContext.current
     var score by remember { mutableIntStateOf(2) }
@@ -373,7 +373,7 @@ fun HomeScreen() {
                         )
                     )
                     .background(color = Color(0xFF6BA6FF))
-                    .clickable { }
+                    .clickable { navigate("UserProfileScreen") }
             ) {
                 Icon(
                     painter = painterResource(id = R.drawable.profile),

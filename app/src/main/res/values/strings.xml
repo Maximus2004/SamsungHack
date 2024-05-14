@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">SamsungHackaton</string>
+    <string name="profile_text_view">Профиль</string>
+    <string name="premium_text_view">\"Премиум\"</string>
+    <string name="business_text_view">\"Бизнес\"</string>
+    <string name="underlined_email"><u>%1$s</u></string>
+    <string name="subscription_period_text_view">Подписка действует до %1$s</string>
 </resources>
